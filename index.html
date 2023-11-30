@@ -1,0 +1,450 @@
+
+
+<head>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Montserrat:400);
+html,
+body {
+  height: 100%;
+  margin: 0;
+  position: relative;
+  background-color: #e50914;
+  font-family:'Montserrat';
+}
+
+.overlay {
+  overflow-x: hidden;
+}
+
+.overlay.active .overlay-svg svg {
+  transform:translate(-50%,-60%);
+  width:250%;
+}
+
+.overlay-svg {
+  overflow:hidden;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:2;
+}
+
+.overlay-svg svg {
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:150%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  transition:1s ease;
+}
+
+.video-wrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow:hidden;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:1;
+}
+.ResponsiveYTPlayer {
+  transform:scale(1.5);
+  transform-origin:50% 50%;
+}
+/*
+.video-wrapper iframe {
+  width:130%;
+  height:130%;
+  position:absolute;
+  top:50%;
+  right:0;
+  transform:translate(-50%,50%);
+  object-fit:cover;
+}*/
+
+.signin,
+.signin-submit {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space:nowrap;
+  padding: 0.6em 1.5em;
+  margin-top: 10vh;
+  position: absolute;
+  right:0;
+  z-index:3;
+  font-family: 'Montserrat';
+  overflow-x:hidden;
+}
+
+.active .signin {
+  display:none; 
+}
+
+.signin:after,
+.signin-submit:after {
+  content: '';
+  width: 5%;
+  position: absolute;
+  left: 95%;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: #fff;
+}
+
+.signin:hover:after,
+.signin-submit.active:after {
+  animation: hover 1.5s 1 both;
+}
+
+.signin.animateout:after {
+  animation: hover 0.75s 1 reverse;
+}
+
+@keyframes hover {
+  0%,
+  20% {
+    width: 5%;
+    position: absolute;
+    left: 95%;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  2%,
+  6%,
+  10% {
+    opacity: 0;
+  }
+  4%,
+  8%,
+  12% {
+    opacity: 1;
+  }
+  49% {
+    width: 100%;
+  }
+  55% {
+    width: 0;
+    left: 0;
+    background-color: #fff;
+  }
+  56% {
+    width: 0;
+    background-color: #e50914;
+  }
+  100% {
+    width: 100%;
+    background-color: #e50914;
+    left: 0;
+  }
+}
+
+.signinform {
+  display:none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index:4;
+  padding-top: 10vh;
+  width: 250px;
+  transform: translateX(-50%) translateY(-50%);
+
+}
+
+.fadeIn {
+  opacity:0;
+}
+
+.signinform-field,
+.signinform-field label,
+.signinform-field input {
+  display: block;
+  width: 100%;
+}
+
+.signinform-field {
+  position: relative;
+}
+
+.signinform-field label {
+  color: #ccc;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(2em);
+  position: relative;
+  z-index: -1;
+}
+
+.signinform-field.focus label {
+  transform: translateY(0);
+}
+
+.signinform-field input {
+  color:#fff;
+  margin-bottom: 1em;
+  background-color: transparent;
+  border-style: solid;
+  border-color: transparent transparent #eaeaea;
+  border-width: 4px 0 4px 0;
+  padding: 0.5em 0;
+  font-size: 1em;
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+}
+.signinform-field.focus input {
+  color:#fff;
+  margin-bottom: 1em;
+  background-color: transparent;
+  border-style: solid;
+  border-color: transparent;
+}
+.signinform-field input:focus {
+  outline: none;
+}
+
+.signinform-field:before {
+  content: '';
+  width:0;
+  height: 4px;
+  position: absolute;
+  right: 100%;
+  bottom: 0;
+  background-color: #fff;
+}
+.signinform-field.focus:before {
+  animation:fieldFocus 1s 1 forwards;
+}
+
+@keyframes fieldFocus {
+0%,
+  20% {
+    width: 0%;
+    right:100%;
+  }
+  2%,
+  6%,
+  10% {
+    opacity: 0;
+  }
+  4%,
+  8%,
+  12% {
+    opacity: 1;
+  }
+  49% {
+    width: 100%;
+    right:0;
+  }
+  55% {
+    width: 0;
+    right: 0;
+    background-color: #fff;
+  }
+  56% {
+    width: 0;
+    background-color: #e50914;
+  }
+  100% {
+    width: 100%;
+    background-color: #e50914;
+    right: 0;
+  }
+}
+
+.link-register {
+  margin-top: 2.6em;
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+}
+
+.link-register:after {
+  content: '?';
+}
+
+.link-register:hover:after {
+  animation: questionSpin 1s 1 both;
+}
+
+.link-register:focus
+{
+  outline:none;
+}
+
+.signin-submit {
+  position:relative;
+  display:inline-block;
+  max-width:130px;
+  margin-top: 2em;
+  float:none;
+  background-color:transparent;
+  border:none;
+  font-size: 1em;
+}
+
+.signinform button:focus {
+  outline: none;
+}
+
+.cancelarea {
+   display:block;
+   margin:20px 0;
+  text-align:center;
+}
+.cancelbtn {
+  padding:20px;
+  display:block;
+  color:#fff;
+  text-decoration:none;
+}
+
+.active .signinform {
+  display:block;
+}
+
+.active .signin {
+  animation: fadeIn 1s 1 backwards;
+}
+
+.active .fadeIn {
+  animation: fadeIn 1s 1s 1 forwards;
+}
+.active .fadeIn:nth-of-type(2) {
+  animation-delay:2s;
+}
+.active .fadeIn:nth-of-type(3) {
+  animation-delay:3s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+    transform:translateY(-10%);
+  }
+  100% {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity:1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity:0;
+    transform:translateY(-10%);
+  }
+}
+
+@keyframes questionSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(380deg) scale(1.5);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Autoplay by Katheryn Guthrie
+https://codepen.io/katguth3/pen/jmOrPZ
+*/
+.ResponsiveYTPlayer { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .ResponsiveYTPlayer iframe, .ResponsiveYTPlayer object, .ResponsiveYTPlayer embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
+</head>
+
+<div class="overlay"><a href="./movie.html" class="signin">Sign In</a>
+    
+    
+    <div class="overlay-svg">
+    <svg x="0px" y="0px"
+          viewBox="0 0 2000 1500" enable-background="new 0 0 2000 1500" >
+    <path opacity="0.8" fill="#221F1F" d="M0,0v1500h2000V0H0z M797.266,815.83c-8.414,1.479-16.974,1.92-25.832,3.1l-27.011-79.113
+        v82.512c-8.413,0.885-16.088,2.064-24.059,3.246V674.427h22.437l30.7,85.758v-85.758h23.765V815.83z M885.533,698.043h-41.771
+        v31.736c9.152,0,23.174-0.443,31.588-0.443v23.616c-10.481,0-22.731,0-31.588,0.443v35.129c13.875-0.885,27.75-2.068,41.771-2.51
+        v22.73l-65.39,5.166V674.425h65.39V698.043z M973.357,698.044h-24.503V806.68c-7.971,0-15.94,0-23.615,0.295V698.043h-24.503
+        v-23.618h72.621l-0.003,23.618L973.357,698.044z M1054.537,698.047h-42.806v30.111l0.001-0.001h32.325v23.615h-32.325v53.582
+        h-23.175V674.429h65.979V698.047z M1133.063,810.076c-21.106-1.33-42.215-2.658-63.766-3.1V674.427h23.615v110.26l0.002,0.002
+        c13.432,0.293,27.012,1.33,40.148,2.064V810.076z M1176.163,813.471c-7.675-0.885-15.647-1.328-23.174-1.771V674.427h23.174V813.471
+        z M1279.635,674.429l-29.965,71.884l29.965,79.261c-8.859-1.18-17.712-2.805-26.57-4.279l-16.973-43.689l-17.268,40.148
+        c-8.564-1.479-16.828-1.92-25.389-3.104l30.405-69.227l-27.454-70.997h25.388l15.499,39.707l16.531-39.707h25.831L1279.635,674.429z
+        "/>
+    </svg>
+    </div>
+  </div>
+    <div class="video-wrapper">
+      <div class="ResponsiveYTPlayer">
+         <iframe id="video" src="https://www.youtube.com/embed/cSqi-8kAMmM?autoplay=1&playlist=cSqi-8kAMmM&enablejsapi=1&controls=0&disablekb=1&loop=1&mute=1&start=2&end=12" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+      </div>
+    </div>
+    <script>
+        $('.signin').hover(function() {}, function() {
+        $(this).addClass('animateout');
+        setTimeout(function() {
+          $('.signin').removeClass('animateout');
+        }, 750);
+      });
+      
+      $('.signin').on('click', function() {
+        $('.overlay').toggleClass('active');
+        $('signinform-field').removeClass('focus');
+        $('input').val('');
+        return false;
+      });
+      $('input').focus(function() {
+        $(this).parent().addClass('focus');
+      }).blur(function() {
+        if ($(this).val() == '') {
+          $(this).parent().removeClass('focus');
+        }
+        if ($('#fdEmail').val() != '' && $('#fdPassword').val() != '') {
+          $('#btSubmit').addClass('active');
+        } else {
+          $('#btSubmit').removeClass('active');
+      
+        }
+      });
+      $('#btSubmit').on('click', function() {
+        return false;
+      });
+      $('#btCancel').on('click', function() {
+        $('.overlay').removeClass('active');
+        return false;
+      });
+      
+      // Autoplay by Katheryn Guthrie
+      // https://codepen.io/katguth3/pen/jmOrPZ 
+      
+         var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/player_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+       
+            // 3. This function creates an <iframe> (and YouTube player)
+            //    after the API code downloads.
+            var player;
+            function onYouTubePlayerAPIReady() {
+              player = new YT.Player('video', {
+                playerVars: { 'autoplay': 1, 'controls': 1,'autohide':1,'wmode':'opaque' },
+                videoId: 'JW5meKfy3fY',
+                events: {
+                  'onReady': onPlayerReady}
+              });
+            }
+       
+            // 4. The API will call this function when the video player is ready.
+            function onPlayerReady(event) {
+              event.target.mute();
+            }
+    </script>
